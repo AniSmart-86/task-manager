@@ -14,9 +14,8 @@ const app = express();
 // middleware to handle cors
 app.use(
     cors({
-        origin: [process.env.CLIENT_URL, "http://localhost:5173"],
+        origin: ["https://task-manager-olive-beta-72.vercel.app", "http://localhost:5173"],
         methods: ["POST", "GET", "PUT", "DELETE"],
-        credentials: true,
         allowedHeaders: ['Content-Type', 'Authorization'],
     })
 );
