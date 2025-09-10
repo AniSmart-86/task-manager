@@ -1,4 +1,4 @@
-export const BASE_URL = "https://task-manager-elnj.vercel.app";
+export const BASE_URL = "https://task-manager-fstw.onrender.com";
 
 
 export const API_PATHS ={
