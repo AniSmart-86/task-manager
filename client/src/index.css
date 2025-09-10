@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import "tailwindcss";
+
+:root {
+    --font-display: "Poppins", "sans-serif";
+    --breakpoint-3xl: 1920px;
+    --color-primary: #1368EC;
+}
+
+@layer base{
+    html{
+        font-family: var(--font-display);
+    }
+
+    body{
+        background-color: #fcfbfc;
+        overflow-x: hidden;
+    }
+}
+
+
+.text-primary{
+    color: var(--color-primary)
+}
+
+.bg-primary{
+    background-color: var(--color-primary);
+}
+
+.input-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  color: #000;
+  background-color: rgba(241, 245, 249, 0.5); /* bg-slate-100/50 */
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.75rem;
+  margin-top: 0.75rem;
+  border: 1px solid #e2e8f0; /* border-slate-200 */
+  outline: none;
+}
+
+.btn-primary {
+  width: 100%;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #fff;
+  background-color: #1368EC; /* var(--color-primary) */
+  box-shadow: 0 4px 6px 0 rgba(139, 92, 246, 0.05); /* shadow-purple-600/5 */
+  padding: 10px;
+  border-radius: 0.375rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-primary:hover {
+  background-color: rgba(37, 99, 235, 0.15); /* hover:bg-blue-600/15 */
+  color: #2563eb; /* hover:text-blue-600 */
+}
+
+.card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px 0 #f3f4f6; /* shadow-gray-100 */
+  border: 1px solid rgba(229, 231, 235, 0.5); /* border-gray-200/50 */
+}
+
+.card-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 12px;
+  font-weight: 500;
+  color: #374151; /* text-gray-700 */
+  background-color: #f9fafb; /* bg-gray-50 */
+  padding: 0.375rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.card-btn:hover {
+  color: #1368EC; /* hover:text-primary */
+  background-color: #eff6ff; /* hover:bg-blue-50 */
+}
+
+.form-card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px 0 #f3f4f6; /* shadow-md shadow-gray-100 */
+  border: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.form-input {
+  width: 100%;
+  font-size: 0.875rem;
+  color: #000;
+  outline: none;
+  background-color: #fff;
+  border: 1px solid #f1f5f9; /* border-slate-100 */
+  padding: 0.75rem 0.625rem;
+  border-radius: 0.375rem;
+  margin-top: 0.5rem;
+}
+.form-input::placeholder {
+  color: #6b7280; /* placeholder:text-gray-500 */
+}
+
+.card-btn-fill {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  background-color: #1368EC; /* bg-primary */
+  border: 1px solid #1368EC; /* border-primary */
+  padding: 0.375rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.card-btn-fill:hover {
+  color: #1368EC; /* hover:text-primary */
+  background-color: #eff6ff; /* hover:bg-blue-50 */
+}
+
+.add-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #1368EC; /* text-primary */
+  white-space: nowrap;
+  background-color: #eff6ff; /* bg-blue-50 */
+  border: 1px solid #dbeafe; /* border-blue-100 */
+  border-radius: 0.5rem;
+}
+
+.download-btn{
+    @apply items-center gap-3 text-xs md:text-[13px] text-lime-900 bg-lime-100 px-2 md:px-3 py-2 rounded border border-lime-200 hover:border-lime-400 cursor-pointer;
+}
+
+.user-card{
+    @apply bg-white p-4 rounded-xl shadow-md shadow-gray-100 border border-gray-200/50
+}
