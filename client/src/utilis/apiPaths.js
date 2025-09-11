@@ -1,4 +1,5 @@
 export const BASE_URL = "https://task-manager-fstw.onrender.com";
+// export const BASE_URL = "http://localhost:8000";
 
 
 export const API_PATHS ={
@@ -29,8 +30,8 @@ export const API_PATHS ={
     },
 
     REPORTS:{
-        EXPORT_TASKS: "/api/report/export/tasks",
-        EXPORT_USERS: "/api/report/export/users"
+        EXPORT_TASKS: "/api/reports/export/tasks",
+        EXPORT_USERS: "/api/reports/export/users"
     },
 
     IMAGE:{

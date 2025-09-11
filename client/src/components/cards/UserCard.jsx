@@ -44,7 +44,7 @@ const StatCard = ({label, count, status})=>{
         switch (status){
             case 'In_Progress': return 'bg-cyan-50 text-cyan-500 border border-cyan-500/10';
             case 'Completed': return 'bg-lime-500 text-lime-500 border border-lime-500/20';
-            // case 'Pending': return 'bg-purple-100 text-purple-500 border border-purple-200';
+            case 'Pending': return 'bg-purple-100 text-purple-500 border border-purple-200';
             default: return 'bg-violet-50 text-violet-500 border border-violet-500';
         }
     }

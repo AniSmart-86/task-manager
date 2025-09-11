@@ -8,6 +8,7 @@ import TaskStatusTabs from '../../components/TaskStatusTabs';
 import TaskCard from '../../components/cards/TaskCard';
 import { UserContext } from '../../context/userContext';
 import CreatingTask from '../../components/layouts/CreateTask';
+import toast from 'react-hot-toast';
 
 const ManageTasks = () => {
   const [allTasks, setAllTasks]= useState([]);
@@ -55,6 +56,7 @@ const ManageTasks = () => {
           link.click();
           link.parentNode.removeChild(link);
           window.URL.revokeObjectURL(url);
+           toast.success("User task details downloaded successfully.")
         } catch (error) {
           console.error("error downloading report", error)
           toast.error("Failed to download task details.")
@@ -106,21 +108,22 @@ const ManageTasks = () => {
             <div className='grid grid-cols-1 md:grid-cols-3 gap-4 mt-4 mx-4'>
              
               {allTasks?.map((item, index)=>(
-                <TaskCard
-                key={item._id || index}
-                title={item.title}
-                description={item.description}
-                priority={item.priority}
-                status={item.status}
-                progress={item.progress}
-                createdAt={item.createdAt}
-                dueDate={item.dueDate}
-                assignedTo={item.assignedTo?.map((itm)=> itm.profileImageUrl)}
-                attachmentCount={item.attachments?.length || 0}
-                completedTodoCount={item.completedTodoCount || 0}
-                todoChecklists={item.todoChecklists || []}
-                onClick={()=> handleClick(item)}
-                 />
+            <TaskCard
+  key={item._id || index}
+  title={item.title}
+  description={item.description}
+  priority={item.priority}
+  status={item.status}
+  progress={item.progress}
+  createdAt={item.createdAt}
+  dueDate={item.dueDate}
+  assignedTo={Array.isArray(item.assignedTo) ? item.assignedTo : [item.assignedTo]} 
+  attachmentCount={item.attachments?.length || 0}
+  completedTodoCount={item.completedTodoCount || 0}
+  todoChecklists={item.todoChecklists || []}
+  onClick={() => handleClick(item)}
+/>
+
               ))}
             </div>
           )}

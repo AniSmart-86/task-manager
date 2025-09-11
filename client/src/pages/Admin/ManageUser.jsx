@@ -4,6 +4,7 @@ import axiosInstance from '../../utilis/axiosInstance';
 import { API_PATHS } from '../../utilis/apiPaths';
 import { LuFileSpreadsheet } from 'react-icons/lu';
 import UserCard from '../../components/cards/UserCard';
+import toast from 'react-hot-toast';
 
 const ManageUser = () => {
 
@@ -37,9 +38,10 @@ const ManageUser = () => {
       link.click();
       link.parentNode.removeChild(link);
       window.URL.revokeObjectURL(url);
+      toast.success("User details downloaded successfully.")
     } catch (error) {
-      console.error("error downloading report", error);
-      toast.error("Failed to download user task details.")
+      console.error("error downloading user report", error);
+      toast.error("Failed to download user task details.");
     }
   }
 
@@ -56,7 +58,7 @@ const ManageUser = () => {
   return (
    <AdminDashboardLayout activeMenu={"Team Members"}>
     <div className='mt-5 mb-10'>
-      <div className='flex md:flex-row md:items-center justify-center'>
+      <div className='flex md:flex-row md:items-center justify-between'>
         <h2 className='text-xl font-medium'>Team Members</h2>
         <button
         className='flex download-btn'
