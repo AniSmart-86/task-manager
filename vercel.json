@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd saas-task-manager && pnpm install && pnpm run build",
+  "outputDirectory": "saas-task-manager/.next",
+  "installCommand": "cd saas-task-manager && pnpm install",
+  "devCommand": "cd saas-task-manager && pnpm run dev",
+  "framework": "nextjs"
+}
