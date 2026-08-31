@@ -4,7 +4,7 @@
 # 📌 Task Management System
 
 A full-stack **Task Management System** that allows **admins** and **users** to manage tasks efficiently.
-Built with **React.js (frontend)**, **Node.js + Express (backend)**, and **MongoDB (database)**.
+Built with **Nextjs (frontend)**, **Node.js + Express (backend)**, and **MongoDB (database)**.
 
 ---
 
@@ -42,7 +42,7 @@ Built with **React.js (frontend)**, **Node.js + Express (backend)**, and **Mongo
 
 **Frontend**
 
-* React.js (with React Router, Context API)
+* Nextjs (with Context API)
 * Tailwind CSS
 * Axios
 * React Hot Toast (notifications)
@@ -141,7 +141,7 @@ npm start
 
 ## 👨‍💻 Author
 
-**Ani Okechukwu Emmanuel**
+**Ani Emmanuel**
 
 * Twitter: [@Anismart13](https://twitter.com/Anismart13)
 * GitHub: [anismart-86](https://github.com/anismart-86)
