@@ -22,7 +22,7 @@ export default function HomePage() {
   const { user } = useContext(UserContext);
 
   return (
-    <div className="min-h-screen bg-[#030712] text-slate-100 selection:bg-violet-500 selection:text-white relative overflow-hidden">
+    <div className="min-h-screen bg-white text-slate-900 selection:bg-violet-500 selection:text-white relative overflow-hidden">
       {/* Background Radial Glow Effects */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-250 h-25 bg-linear-to-b from-violet-600/20 via-indigo-600/10 to-transparent blur-3xl pointer-events-none" />
       <div className="absolute top-1/3 -left-48 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />

@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8fafc;
+  --background: #ffffff;
   --foreground: #0f172a;
-  --card: #ffffff;
-  --card-border: #e2e8f0;
-  --primary: #7c3aed;
-  --primary-hover: #6d28d9;
-  --accent-cyan: #0891b2;
-  --accent-emerald: #059669;
+  --card: rgba(17, 24, 39, 0.75);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --primary: #8b5cf6;
+  --primary-hover: #7c3aed;
+  --accent-cyan: #06b6d4;
+  --accent-emerald: #10b981;
 }
 
 @theme inline {
@@ -18,14 +18,13 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: light;
 }
 
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: #f8fafc;
-  color: var(--foreground);
+  background-color: #ffffff;
+  color: #0f172a;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   overflow-x: hidden;
 }
@@ -34,37 +33,39 @@ body {
   box-sizing: border-box;
 }
 
-/* Card — clean white with soft shadow */
+/* Glassmorphism dark cards on clean white background */
 .glass-card {
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
+  background: rgba(17, 24, 39, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 1rem;
-  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.05), 0 1px 2px -1px rgba(0,0,0,0.05);
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  color: #f8fafc;
 }
 
 .glass-card:hover {
-  border-color: #c4b5fd;
-  box-shadow: 0 4px 16px -4px rgba(124, 58, 237, 0.12), 0 2px 6px -2px rgba(0,0,0,0.06);
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 12px 35px -10px rgba(139, 92, 246, 0.25);
 }
 
-/* Modern inputs — light */
+/* Modern inputs inside cards/modals */
 .form-input {
   width: 100%;
   padding: 0.75rem 1rem;
   border-radius: 0.75rem;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  color: #0f172a;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f8fafc;
   font-size: 0.875rem;
   outline: none;
   transition: all 0.2s ease;
 }
 
 .form-input:focus {
-  border-color: #7c3aed;
-  background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.25);
 }
 
 .form-input::placeholder {
@@ -81,9 +82,9 @@ body {
   border-radius: 0.75rem;
   font-weight: 600;
   font-size: 0.875rem;
-  background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+  background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
   color: white;
-  box-shadow: 0 2px 8px 0 rgba(124, 58, 237, 0.3);
+  box-shadow: 0 4px 14px 0 rgba(139, 92, 246, 0.35);
   transition: all 0.2s ease;
   cursor: pointer;
   border: none;
@@ -91,7 +92,8 @@ body {
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px 0 rgba(124, 58, 237, 0.4);
+  box-shadow: 0 6px 20px 0 rgba(139, 92, 246, 0.5);
+  opacity: 0.95;
 }
 
 .btn-primary:disabled {
@@ -110,17 +112,17 @@ body {
   border-radius: 0.75rem;
   font-weight: 500;
   font-size: 0.875rem;
-  background: #ffffff;
-  border: 1px solid #e2e8f0;
-  color: #475569;
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
   transition: all 0.2s ease;
   cursor: pointer;
 }
 
 .btn-secondary:hover {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
-  color: #0f172a;
+  background: rgba(51, 65, 85, 0.95);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: white;
 }
 
 /* Custom Scrollbar */
@@ -136,5 +138,5 @@ body {
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #7c3aed;
+  background: #8b5cf6;
 }
