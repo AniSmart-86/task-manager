@@ -47,7 +47,7 @@ export async function POST(request: Request) {
       expiresAt,
     });
 
-    const origin = request.headers.get("origin") || request.headers.get("referer") || "http://localhost:3000";
+    const origin = request.headers.get("origin") || request.headers.get("referer") || "https://task-manager-nine-azure-77.vercel.app";
     const inviteLink = `${origin.replace(/\/$/, "")}/accept-invite?token=${token}`;
 
     const emailResult = await sendWorkerInviteEmail({

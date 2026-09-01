@@ -77,7 +77,7 @@ export default function SignUpPage() {
             <div>
               <label className="block mb-1.5 font-medium text-slate-300">Full Name</label>
               <div className="relative">
-                <LuUser className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+            
                 <input
                   type="text"
                   placeholder="e.g. Alex Morgan"
@@ -91,7 +91,7 @@ export default function SignUpPage() {
             <div>
               <label className="block mb-1.5 font-medium text-slate-300">Email Address</label>
               <div className="relative">
-                <LuMail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+          
                 <input
                   type="email"
                   placeholder="admin@company.com"
@@ -105,7 +105,7 @@ export default function SignUpPage() {
             <div>
               <label className="block mb-1.5 font-medium text-slate-300">Password</label>
               <div className="relative">
-                <LuLock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+            
                 <input
                   type="password"
                   placeholder="Min 6 characters"
@@ -129,7 +129,7 @@ export default function SignUpPage() {
                   <span>Creating Workspace...</span>
                 </>
               ) : (
-                "CREATE ADMIN WORKSPACE"
+                "CREATE WORKSPACE"
               )}
             </button>
 

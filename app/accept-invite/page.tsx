@@ -105,7 +105,7 @@ function AcceptInviteForm() {
   return (
     <div className="w-full max-w-md relative z-10">
       <div className="text-center mb-6">
-        <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-tr from-violet-600 to-indigo-500 shadow-xl shadow-violet-500/30 mb-4">
+        <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-tr from-violet-600 to-indigo-500 shadow-xl shadow-violet-500/30 mb-4">
           <LuSquareCheck className="h-8 w-8 text-white" />
         </div>
         <h1 className="text-2xl font-bold tracking-tight text-white">Join Workspace</h1>
