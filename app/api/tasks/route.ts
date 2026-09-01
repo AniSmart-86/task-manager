@@ -1,6 +1,6 @@
 import connectDB from "@/lib/db";
 import Task from "@/lib/models/Task";
-import { requireAuth } from "@/lib/auth";
+import { requireAuth, isSuperAdmin } from "@/lib/auth";
 
 export async function GET(request: Request) {
   try {
@@ -14,40 +14,35 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const status = searchParams.get("status");
 
-    const filter: any = {};
+    // Build the base workspace filter
+    let workspaceFilter: any = {};
+    if (sessionUser.role === "admin") {
+      // Admin only sees their own workspace tasks
+      workspaceFilter = { adminId: sessionUser._id };
+    } else if (sessionUser.role === "member") {
+      // Member only sees tasks assigned to them
+      workspaceFilter = { assignedTo: sessionUser._id };
+    }
+    // superadmin: no filter — sees all tasks
+
+    const filter: any = { ...workspaceFilter };
     if (status) filter.status = status;
 
-    const tasks = sessionUser.role === "admin"
-      ? await Task.find(filter).populate("assignedTo", "name email profileImageUrl")
-      : await Task.find({ ...filter, assignedTo: sessionUser._id }).populate("assignedTo", "name email profileImageUrl");
+    const tasks = await Task.find(filter).populate("assignedTo", "name email profileImageUrl");
 
     const mappedTasks = tasks.map((task: any) => ({
       ...task.toObject(),
       completedTodoCount: task.todoChecklists.filter((item: any) => item.completed).length,
     }));
 
-    const allTasks = await Task.countDocuments(sessionUser.role === "admin" ? {} : { assignedTo: sessionUser._id });
-    const pendingTasks = await Task.countDocuments({
-      ...(sessionUser.role !== "admin" && { assignedTo: sessionUser._id }),
-      status: "Pending",
-    });
-    const inProgressTasks = await Task.countDocuments({
-      ...(sessionUser.role !== "admin" && { assignedTo: sessionUser._id }),
-      status: "In_Progress",
-    });
-    const completedTasks = await Task.countDocuments({
-      ...(sessionUser.role !== "admin" && { assignedTo: sessionUser._id }),
-      status: "Completed",
-    });
+    const allTasks = await Task.countDocuments(workspaceFilter);
+    const pendingTasks = await Task.countDocuments({ ...workspaceFilter, status: "Pending" });
+    const inProgressTasks = await Task.countDocuments({ ...workspaceFilter, status: "In_Progress" });
+    const completedTasks = await Task.countDocuments({ ...workspaceFilter, status: "Completed" });
 
     return Response.json({
       tasks: mappedTasks,
-      statusSummary: {
-        all: allTasks,
-        pendingTasks,
-        inProgressTasks,
-        completedTasks,
-      },
+      statusSummary: { all: allTasks, pendingTasks, inProgressTasks, completedTasks },
     });
   } catch (error: any) {
     return Response.json({ message: "Error fetching tasks", error: error.message }, { status: 500 });
@@ -63,7 +58,7 @@ export async function POST(request: Request) {
       return Response.json({ message: "Not authorized, no token" }, { status: 401 });
     }
 
-    if (sessionUser.role !== "admin") {
+    if (sessionUser.role === "member") {
       return Response.json({ message: "Admin access required" }, { status: 403 });
     }
 
@@ -83,6 +78,7 @@ export async function POST(request: Request) {
       attachments: Array.isArray(attachments) ? attachments : [],
       todoChecklists: Array.isArray(todoChecklists) ? todoChecklists : [],
       createdBy: sessionUser._id,
+      adminId: sessionUser._id, // Tag with admin's workspace ID
     });
 
     return Response.json({ message: "Task created successfully", task }, { status: 201 });

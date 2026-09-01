@@ -6,13 +6,13 @@ export type SessionUser = {
   _id: string;
   email: string;
   name: string;
-  role: "admin" | "member";
+  role: "superadmin" | "admin" | "member";
   profileImageUrl?: string | null;
 };
 
 export function signToken(userId: string) {
   return jwt.sign({ id: userId }, process.env.JWT_SECRET || "task-manager-secret", {
-    expiresIn: "1d",
+    expiresIn: "7d",
   });
 }
 
@@ -45,4 +45,14 @@ export async function requireAuth(req: Request | NextRequest): Promise<SessionUs
   } catch {
     return null;
   }
+}
+
+/** Returns true if the user is a superadmin */
+export function isSuperAdmin(user: SessionUser) {
+  return user.role === "superadmin";
+}
+
+/** Returns true if the user is an admin or superadmin */
+export function isAdmin(user: SessionUser) {
+  return user.role === "admin" || user.role === "superadmin";
 }

@@ -13,7 +13,7 @@ export async function sendWorkerInviteEmail({
   inviterName: string;
 }) {
   const fromEmail = process.env.RESEND_FROM_EMAIL || "noreply@giftahub.com";
-  const subject = `${inviterName} invited you to join TaskPilot Workspace`;
+  const subject = `${inviterName} invited you to join TaskPiloter Workspace`;
 
   const htmlContent = `
     <!DOCTYPE html>
@@ -32,9 +32,9 @@ export async function sendWorkerInviteEmail({
       </head>
       <body>
         <div class="container">
-          <div class="logo">⚡ TaskPilot</div>
+          <div class="logo">⚡ TaskPiloter</div>
           <h2>You're Invited!</h2>
-          <p><strong>${inviterName}</strong> has invited you to join their workspace on TaskPilot as a team worker.</p>
+          <p><strong>${inviterName}</strong> has invited you to join their workspace on TaskPiloter as a team worker.</p>
           <p>Click the button below to complete your profile setup, set your password, and start collaborating on tasks:</p>
           <div style="text-align: center;">
             <a href="${inviteLink}" class="btn">Accept Invitation & Set Password</a>

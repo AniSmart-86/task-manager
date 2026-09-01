@@ -44,7 +44,9 @@ export default function LoginPage() {
       if (token) {
         updateUser(response.data);
         toast.success("Welcome back!");
-        if (role === "admin") {
+        if (role === "superadmin") {
+          router.push("/superadmin/dashboard");
+        } else if (role === "admin") {
           router.push("/admin/dashboard");
         } else {
           router.push("/user/dashboard");
@@ -69,7 +71,7 @@ export default function LoginPage() {
           <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-tr from-violet-600 to-indigo-500 shadow-xl shadow-violet-500/30 mb-4">
             <LuSquareCheck className="h-8 w-8 text-white" />
           </div>
-          <h1 className="text-2xl font-bold tracking-tight text-white">TaskPilot</h1>
+          <h1 className="text-2xl font-bold tracking-tight text-white">TaskPiloter</h1>
           <p className="text-xs text-slate-400 mt-1">Sign in to access your task workspace</p>
         </div>
 

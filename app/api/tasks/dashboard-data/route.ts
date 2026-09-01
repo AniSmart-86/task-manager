@@ -10,7 +10,14 @@ export async function GET(request: Request) {
       return Response.json({ message: "Not authorized, no token" }, { status: 401 });
     }
 
-    const query = sessionUser.role === "admin" ? {} : { assignedTo: sessionUser._id };
+    // Build workspace filter
+    let query: any = {};
+    if (sessionUser.role === "admin") {
+      query = { adminId: sessionUser._id };
+    } else if (sessionUser.role === "member") {
+      query = { assignedTo: sessionUser._id };
+    }
+    // superadmin: no filter
 
     const totalTasks = await Task.countDocuments(query);
     const pendingTasks = await Task.countDocuments({ ...query, status: "Pending" });

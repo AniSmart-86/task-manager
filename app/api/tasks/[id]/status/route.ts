@@ -19,7 +19,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
     const body = await request.json();
     const isAssigned = task.assignedTo.some((userId: any) => userId.toString() === sessionUser._id.toString());
 
-    if (!isAssigned && sessionUser.role !== "admin") {
+    if (!isAssigned && sessionUser.role !== "admin" && sessionUser.role !== "superadmin") {
       return Response.json({ message: "Not authorized" }, { status: 403 });
     }
 

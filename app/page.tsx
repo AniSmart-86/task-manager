@@ -36,7 +36,7 @@ export default function HomePage() {
               <LuSquareCheck className="h-6 w-6 text-white" />
             </div>
             <div>
-              <span className="text-lg font-bold text-white tracking-tight">TaskPilot</span>
+              <span className="text-lg font-bold text-white tracking-tight">TaskPiloter</span>
               <span className="text-[10px] uppercase font-semibold text-violet-400 block -mt-1">
                 Task Management
               </span>
@@ -109,7 +109,7 @@ export default function HomePage() {
               <div className="h-3 w-3 rounded-full bg-rose-500" />
               <div className="h-3 w-3 rounded-full bg-amber-500" />
               <div className="h-3 w-3 rounded-full bg-emerald-500" />
-              <span className="ml-2 text-xs font-semibold text-slate-400">TaskPilot Admin Preview</span>
+              <span className="ml-2 text-xs font-semibold text-slate-400">TaskPiloter Admin Preview</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-[11px] font-semibold text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-0.5 rounded-full flex items-center gap-1">
@@ -180,7 +180,7 @@ export default function HomePage() {
             </div>
             <h3 className="text-base font-semibold text-white">Auto Admin Setup</h3>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Anyone registering on TaskPilot is instantly created as an Admin workspace manager with full operational control.
+              Anyone registering on TaskPiloter is instantly created as an Admin workspace manager with full operational control.
             </p>
           </div>
 
@@ -239,7 +239,7 @@ export default function HomePage() {
       {/* Workflow Section */}
       <section id="workflow" className="py-20 px-6 max-w-7xl mx-auto border-t border-white/5">
         <div className="text-center mb-14">
-          <h2 className="text-3xl font-bold text-white">How TaskPilot Works</h2>
+          <h2 className="text-3xl font-bold text-white">How TaskPiloter Works</h2>
           <p className="text-sm text-slate-400 mt-2">Get up and running in 3 simple steps.</p>
         </div>
 
@@ -281,7 +281,7 @@ export default function HomePage() {
         <div className="glass-card p-10 md:p-14 text-center relative overflow-hidden bg-linear-to-r from-violet-900/40 via-indigo-900/40 to-slate-900/80 border border-violet-500/30">
           <h2 className="text-3xl font-extrabold text-white">Ready to Boost Team Productivity?</h2>
           <p className="text-xs md:text-sm text-slate-300 mt-3 max-w-xl mx-auto">
-            Join workspace managers who rely on TaskPilot to organize tasks, invite workers, and deliver work on time.
+            Join workspace managers who rely on TaskPiloter to organize tasks, invite workers, and deliver work on time.
           </p>
           <div className="mt-8 flex justify-center gap-4">
             <Link href="/signup" className="btn-primary text-xs px-8 py-3">
@@ -297,7 +297,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <LuSquareCheck className="h-4 w-4 text-violet-400" />
-            <span className="font-bold text-white">TaskPilot</span>
+            <span className="font-bold text-white">TaskPiloter</span>
             <span>&copy; {new Date().getFullYear()} All rights reserved.</span>
           </div>
           <div className="flex items-center gap-6">

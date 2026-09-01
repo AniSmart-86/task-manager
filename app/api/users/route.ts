@@ -1,7 +1,7 @@
 import connectDB from "@/lib/db";
 import User from "@/lib/models/User";
 import Task from "@/lib/models/Task";
-import { requireAuth } from "@/lib/auth";
+import { requireAuth, isSuperAdmin } from "@/lib/auth";
 
 export async function GET(request: Request) {
   try {
@@ -12,11 +12,16 @@ export async function GET(request: Request) {
       return Response.json({ message: "Not authorized, no token" }, { status: 401 });
     }
 
-    if (sessionUser.role !== "admin") {
+    if (sessionUser.role === "member") {
       return Response.json({ message: "Admin access required" }, { status: 403 });
     }
 
-    const users = await User.find({ role: "member" }).select("-password");
+    // Superadmin sees ALL users; admin only sees workers they invited
+    const query = isSuperAdmin(sessionUser)
+      ? { role: { $in: ["admin", "member"] } }
+      : { role: "member", createdBy: sessionUser._id };
+
+    const users = await User.find(query).select("-password");
 
     const usersWithTaskCounts = await Promise.all(
       users.map(async (user: any) => {

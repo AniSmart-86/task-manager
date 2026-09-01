@@ -14,19 +14,24 @@ export async function POST(request: Request) {
       return Response.json({ message: "Name, email, and password are required" }, { status: 400 });
     }
 
-    const existingUser = await User.findOne({ email: String(email).toLowerCase() });
+    const cleanEmail = String(email).toLowerCase().trim();
+
+    const existingUser = await User.findOne({ email: cleanEmail });
     if (existingUser) {
       return Response.json({ message: "An account with this email already exists" }, { status: 400 });
     }
 
     const hashedPassword = await bcrypt.hash(String(password), 10);
 
-    // Auto-assign Admin role to anyone signing up directly
+    // If this email matches SUPERADMIN_EMAIL env var, assign superadmin role
+    const superAdminEmail = process.env.SUPERADMIN_EMAIL?.toLowerCase().trim();
+    const role = superAdminEmail && cleanEmail === superAdminEmail ? "superadmin" : "admin";
+
     const user = await User.create({
       name,
-      email: String(email).toLowerCase(),
+      email: cleanEmail,
       password: hashedPassword,
-      role: "admin",
+      role,
       status: "active",
     });
 
@@ -44,6 +49,6 @@ export async function POST(request: Request) {
     );
   } catch (error: any) {
     console.error("Register Error:", error);
-    return Response.json({ message: "Error creating admin account", error: error.message }, { status: 500 });
+    return Response.json({ message: "Error creating account", error: error.message }, { status: 500 });
   }
 }

@@ -1,20 +1,20 @@
 import connectDB from "@/lib/db";
 import Task from "@/lib/models/Task";
-import { requireAuth } from "@/lib/auth";
+import { requireAuth, isSuperAdmin } from "@/lib/auth";
 
 export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     await connectDB();
     const sessionUser = await requireAuth(request);
-    if (!sessionUser) {
-      return Response.json({ message: "Not authorized, no token" }, { status: 401 });
-    }
+    if (!sessionUser) return Response.json({ message: "Not authorized, no token" }, { status: 401 });
 
     const { id } = await params;
     const task = await Task.findById(id).populate("assignedTo", "name email profileImageUrl");
+    if (!task) return Response.json({ message: "Task not found" }, { status: 404 });
 
-    if (!task) {
-      return Response.json({ message: "Task not found" }, { status: 404 });
+    // Members can only see tasks assigned to them
+    if (sessionUser.role === "member" && !task.assignedTo.some((u: any) => u._id.toString() === sessionUser._id)) {
+      return Response.json({ message: "Access denied" }, { status: 403 });
     }
 
     return Response.json(task);
@@ -27,24 +27,27 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
   try {
     await connectDB();
     const sessionUser = await requireAuth(request);
-    if (!sessionUser) {
-      return Response.json({ message: "Not authorized, no token" }, { status: 401 });
-    }
+    if (!sessionUser) return Response.json({ message: "Not authorized, no token" }, { status: 401 });
 
     const { id } = await params;
     const task = await Task.findById(id);
-    if (!task) {
-      return Response.json({ message: "Task not found" }, { status: 404 });
+    if (!task) return Response.json({ message: "Task not found" }, { status: 404 });
+
+    // Admins can only update tasks in their own workspace; superadmin can update any
+    if (sessionUser.role === "admin" && task.adminId?.toString() !== sessionUser._id) {
+      return Response.json({ message: "Access denied: not your workspace" }, { status: 403 });
+    }
+    if (sessionUser.role === "member") {
+      return Response.json({ message: "Admin access required" }, { status: 403 });
     }
 
     const body = await request.json();
     task.title = body.title || task.title;
-    task.description = body.description || task.description;
+    task.description = body.description ?? task.description;
     task.priority = body.priority || task.priority;
     task.dueDate = body.dueDate || task.dueDate;
     task.todoChecklists = body.todoChecklists || task.todoChecklists;
     task.attachments = body.attachments || task.attachments;
-
     if (body.assignedTo) {
       task.assignedTo = Array.isArray(body.assignedTo) ? body.assignedTo : task.assignedTo;
     }
@@ -60,18 +63,19 @@ export async function DELETE(request: Request, { params }: { params: Promise<{ i
   try {
     await connectDB();
     const sessionUser = await requireAuth(request);
-    if (!sessionUser) {
-      return Response.json({ message: "Not authorized, no token" }, { status: 401 });
-    }
+    if (!sessionUser) return Response.json({ message: "Not authorized, no token" }, { status: 401 });
 
-    if (sessionUser.role !== "admin") {
+    if (sessionUser.role === "member") {
       return Response.json({ message: "Admin access required" }, { status: 403 });
     }
 
     const { id } = await params;
     const task = await Task.findById(id);
-    if (!task) {
-      return Response.json({ message: "Task not found" }, { status: 404 });
+    if (!task) return Response.json({ message: "Task not found" }, { status: 404 });
+
+    // Admin can only delete tasks from their workspace
+    if (sessionUser.role === "admin" && task.adminId?.toString() !== sessionUser._id) {
+      return Response.json({ message: "Access denied: not your workspace" }, { status: 403 });
     }
 
     await task.deleteOne();

@@ -16,7 +16,7 @@ export async function PUT(request: Request, { params }: { params: Promise<{ id: 
       return Response.json({ message: "Task not found" }, { status: 404 });
     }
 
-    const isAllowed = task.assignedTo.some((userId: any) => userId.toString() === sessionUser._id.toString()) || sessionUser.role === "admin";
+    const isAllowed = task.assignedTo.some((userId: any) => userId.toString() === sessionUser._id.toString()) || sessionUser.role === "admin" || sessionUser.role === "superadmin";
     if (!isAllowed) {
       return Response.json({ message: "Not authorized to update checklist" }, { status: 403 });
     }

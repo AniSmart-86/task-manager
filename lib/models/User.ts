@@ -6,7 +6,7 @@ const UserSchema = new Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     profileImageUrl: { type: String, default: null },
-    role: { type: String, enum: ["admin", "member"], default: "admin" },
+    role: { type: String, enum: ["superadmin", "admin", "member"], default: "admin" },
     status: { type: String, enum: ["active", "suspended"], default: "active" },
     createdBy: { type: Schema.Types.ObjectId, ref: "User", default: null },
   },

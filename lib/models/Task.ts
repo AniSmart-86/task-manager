@@ -17,6 +17,8 @@ const TaskSchema = new Schema(
     dueDate: { type: Date, required: true },
     assignedTo: [{ type: Schema.Types.ObjectId, ref: "User" }],
     createdBy: { type: Schema.Types.ObjectId, ref: "User" },
+    // adminId: the workspace admin who owns this task (for multi-tenant isolation)
+    adminId: { type: Schema.Types.ObjectId, ref: "User", index: true },
     attachments: [{ type: String }],
     todoChecklists: [TodoItemSchema],
     progress: { type: Number, default: 0 },

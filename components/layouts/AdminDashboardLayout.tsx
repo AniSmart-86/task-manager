@@ -83,7 +83,7 @@ export default function AdminDashboardLayout({ children, activeMenu }: AdminDash
               <LuSquareCheck className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-base font-bold tracking-tight text-white">Taskify SaaS</h1>
+              <h1 className="text-base font-bold tracking-tight text-white">TaskPiloter</h1>
               <p className="text-[10px] uppercase font-semibold tracking-wider text-violet-400">
                 {user?.role === "admin" ? "Admin Portal" : "Workspace"}
               </p>

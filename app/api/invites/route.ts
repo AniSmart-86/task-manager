@@ -14,7 +14,7 @@ export async function POST(request: Request) {
       return Response.json({ message: "Not authorized, no token" }, { status: 401 });
     }
 
-    if (sessionUser.role !== "admin") {
+    if (sessionUser.role === "member") {
       return Response.json({ message: "Only workspace admins can invite workers" }, { status: 403 });
     }
 
