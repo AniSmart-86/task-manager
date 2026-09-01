@@ -22,16 +22,16 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}>
-      <body className="min-h-full bg-slate-50 text-slate-900 font-sans selection:bg-violet-500 selection:text-white">
+      <body className="min-h-full bg-[#0b0f19] text-slate-100 font-sans selection:bg-violet-500 selection:text-white">
         <UserProvider>
           <Toaster
             position="top-right"
             toastOptions={{
               style: {
-                background: "#ffffff",
-                color: "#0f172a",
-                border: "1px solid #e2e8f0",
-                boxShadow: "0 10px 25px -5px rgba(0,0,0,0.1)",
+                background: "rgba(15, 23, 42, 0.95)",
+                color: "#f8fafc",
+                border: "1px solid rgba(255, 255, 255, 0.1)",
+                backdropFilter: "blur(12px)",
                 fontSize: "13px",
               },
             }}

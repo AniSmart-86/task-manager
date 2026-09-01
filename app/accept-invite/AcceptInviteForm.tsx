@@ -64,10 +64,10 @@ export default function AcceptInviteForm() {
 
   if (loading) {
     return (
-      <main className="min-h-screen flex items-center justify-center bg-slate-50">
-        <div className="flex flex-col items-center gap-3 text-violet-500">
+      <main className="min-h-screen flex items-center justify-center bg-[#0b0f19]">
+        <div className="flex flex-col items-center gap-3 text-violet-400">
           <LuLoader className="animate-spin h-8 w-8" />
-          <span className="text-xs font-medium text-slate-500">Validating invitation link...</span>
+          <span className="text-xs font-medium text-slate-400">Validating invitation link...</span>
         </div>
       </main>
     );
@@ -75,11 +75,11 @@ export default function AcceptInviteForm() {
 
   if (error && !inviteData) {
     return (
-      <main className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-8 text-center max-w-sm space-y-4">
-          <div className="h-12 w-12 rounded-full bg-rose-100 text-rose-500 flex items-center justify-center mx-auto text-xl font-bold">!</div>
-          <h2 className="text-base font-bold text-slate-800">Invitation Invalid</h2>
-          <p className="text-xs text-slate-500">{error}</p>
+      <main className="min-h-screen flex items-center justify-center bg-[#0b0f19] p-4">
+        <div className="glass-card p-8 text-center max-w-sm space-y-4 border border-white/10">
+          <div className="h-12 w-12 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center mx-auto text-xl font-bold">!</div>
+          <h2 className="text-base font-bold text-white">Invitation Invalid</h2>
+          <p className="text-xs text-slate-400">{error}</p>
           <button onClick={() => router.push("/login")} className="btn-primary text-xs w-full py-2.5">Go to Login</button>
         </div>
       </main>
@@ -87,42 +87,42 @@ export default function AcceptInviteForm() {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center p-4 bg-slate-50">
+    <main className="min-h-screen flex items-center justify-center p-4 bg-[#0b0f19]">
       <div className="w-full max-w-md">
         <div className="text-center mb-6">
           <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-tr from-violet-600 to-indigo-500 shadow-lg shadow-violet-500/25 mb-4">
             <LuSquareCheck className="h-8 w-8 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-slate-800">Join Workspace</h1>
-          <p className="text-xs text-slate-500 mt-1">
+          <h1 className="text-2xl font-bold text-white">Join Workspace</h1>
+          <p className="text-xs text-slate-400 mt-1">
             <strong>{inviteData?.inviterName}</strong> invited you as a team worker
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+        <div className="glass-card p-8 shadow-2xl border border-white/10">
           <form onSubmit={handleAccept} className="space-y-4 text-xs">
             <div>
-              <label className="block mb-1.5 font-medium text-slate-700">Invited Email</label>
+              <label className="block mb-1.5 font-medium text-slate-300">Invited Email</label>
               <div className="relative">
-                <LuMail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-                <input type="email" disabled value={inviteData?.email || ""} className="form-input pl-10 opacity-60 cursor-not-allowed" />
+                <LuMail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+                <input type="email" disabled value={inviteData?.email || ""} className="form-input pl-10 opacity-60 cursor-not-allowed bg-slate-950/50" />
               </div>
             </div>
             <div>
-              <label className="block mb-1.5 font-medium text-slate-700">Your Full Name</label>
+              <label className="block mb-1.5 font-medium text-slate-300">Your Full Name</label>
               <div className="relative">
                 <LuUser className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                 <input type="text" placeholder="e.g. Sarah Jenkins" className="form-input pl-10" value={fullname} onChange={(e) => setFullname(e.target.value)} />
               </div>
             </div>
             <div>
-              <label className="block mb-1.5 font-medium text-slate-700">Set Password</label>
+              <label className="block mb-1.5 font-medium text-slate-300">Set Password</label>
               <div className="relative">
                 <LuLock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
                 <input type="password" placeholder="Min 6 characters" className="form-input pl-10" value={password} onChange={(e) => setPassword(e.target.value)} />
               </div>
             </div>
-            {error && <p className="text-xs font-medium text-rose-600 bg-rose-50 p-3 rounded-xl border border-rose-200">{error}</p>}
+            {error && <p className="text-xs font-medium text-rose-400 bg-rose-500/10 p-3 rounded-xl border border-rose-500/20">{error}</p>}
             <button type="submit" disabled={submitting} className="btn-primary w-full py-3 mt-2 text-xs">
               {submitting ? <><LuLoader className="animate-spin h-4 w-4" /><span>Activating...</span></> : "ACCEPT INVITE & JOIN WORKSPACE"}
             </button>

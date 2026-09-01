@@ -7,7 +7,6 @@ import {
   LuArrowRight,
   LuBan,
   LuSquareCheck,
-  LuClock,
   LuFileSpreadsheet,
   LuLayoutDashboard,
   LuLock,
@@ -15,21 +14,15 @@ import {
   LuShieldCheck,
   LuTrendingUp,
   LuUserPlus,
-  LuUsers,
 } from "react-icons/lu";
 
 export default function HomePage() {
   const { user } = useContext(UserContext);
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 selection:bg-violet-500 selection:text-white relative overflow-hidden">
-      {/* Background Radial Glow Effects */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-250 h-25 bg-linear-to-b from-violet-600/20 via-indigo-600/10 to-transparent blur-3xl pointer-events-none" />
-      <div className="absolute top-1/3 -left-48 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-2/3 -right-48 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
-
+    <div className="min-h-screen bg-[#0b0f19] text-slate-100 selection:bg-violet-500 selection:text-white relative overflow-hidden">
       {/* Top Header Navigation */}
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-white/10 bg-[#0b0f19]/80 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-xl bg-linear-to-tr from-violet-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-violet-500/30">
@@ -53,7 +46,7 @@ export default function HomePage() {
           <div className="flex items-center gap-3">
             {user ? (
               <Link
-                href={user.role === "admin" ? "/admin/dashboard" : "/user/dashboard"}
+                href={user.role === "admin" ? "/admin/dashboard" : user.role === "superadmin" ? "/superadmin/dashboard" : "/user/dashboard"}
                 className="btn-primary text-xs"
               >
                 <LuLayoutDashboard className="h-4 w-4" />
@@ -76,14 +69,14 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="relative pt-16 pb-20 px-6 max-w-7xl mx-auto text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-300 text-xs font-semibold mb-6 shadow-lg shadow-violet-500/10 animate-pulse">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-300 text-xs font-semibold mb-6 shadow-lg shadow-violet-500/10">
           <LuShieldCheck className="h-4 w-4 text-violet-400" />
           <span>Automatic Admin Signup & Email Invitations</span>
         </div>
 
         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-tight">
           Streamline Workflows, Empower Workers &{" "}
-          <span className="bg-linear-to-r from-violet-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
+          <span className="bg-linear-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
             Track Progress Real-Time
           </span>
         </h1>
@@ -149,7 +142,7 @@ export default function HomePage() {
                   In Progress
                 </span>
               </div>
-              <h4 className="text-sm font-semibold text-white">Deploy Production API Server & Resend Webhooks</h4>
+              <h4 className="text-sm font-semibold text-white">Deploy Production API Server & Webhooks</h4>
               <p className="text-xs text-slate-400">Assigned to: Alex Morgan, Sarah Jenkins</p>
             </div>
 
@@ -159,7 +152,7 @@ export default function HomePage() {
                 <span className="text-violet-400">80%</span>
               </div>
               <div className="h-2 w-full rounded-full bg-slate-800 overflow-hidden">
-                <div className="h-full bg-linear-to-r from-violet-500 to-cyan-400 w-[80%]" />
+                <div className="h-full bg-linear-to-r from-violet-500 to-indigo-500 w-[80%]" />
               </div>
             </div>
           </div>
@@ -185,7 +178,7 @@ export default function HomePage() {
           </div>
 
           <div className="glass-card p-6 space-y-3">
-            <div className="h-10 w-10 rounded-xl bg-cyan-600/20 text-cyan-400 border border-cyan-500/30 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-xl bg-violet-600/20 text-violet-400 border border-violet-500/30 flex items-center justify-center">
               <LuMail className="h-5 w-5" />
             </div>
             <h3 className="text-base font-semibold text-white">Worker Invites</h3>
@@ -195,7 +188,7 @@ export default function HomePage() {
           </div>
 
           <div className="glass-card p-6 space-y-3">
-            <div className="h-10 w-10 rounded-xl bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-xl bg-violet-600/20 text-violet-400 border border-violet-500/30 flex items-center justify-center">
               <LuTrendingUp className="h-5 w-5" />
             </div>
             <h3 className="text-base font-semibold text-white">Real-Time Progress Tracking</h3>
@@ -205,7 +198,7 @@ export default function HomePage() {
           </div>
 
           <div className="glass-card p-6 space-y-3">
-            <div className="h-10 w-10 rounded-xl bg-amber-600/20 text-amber-400 border border-amber-500/30 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-xl bg-violet-600/20 text-violet-400 border border-violet-500/30 flex items-center justify-center">
               <LuBan className="h-5 w-5" />
             </div>
             <h3 className="text-base font-semibold text-white">Worker Access Control</h3>
@@ -215,7 +208,7 @@ export default function HomePage() {
           </div>
 
           <div className="glass-card p-6 space-y-3">
-            <div className="h-10 w-10 rounded-xl bg-emerald-600/20 text-emerald-400 border border-emerald-500/30 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-xl bg-violet-600/20 text-violet-400 border border-violet-500/30 flex items-center justify-center">
               <LuFileSpreadsheet className="h-5 w-5" />
             </div>
             <h3 className="text-base font-semibold text-white">Formatted Excel Exports</h3>
@@ -225,7 +218,7 @@ export default function HomePage() {
           </div>
 
           <div className="glass-card p-6 space-y-3">
-            <div className="h-10 w-10 rounded-xl bg-indigo-600/20 text-indigo-400 border border-indigo-500/30 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-xl bg-violet-600/20 text-violet-400 border border-violet-500/30 flex items-center justify-center">
               <LuLock className="h-5 w-5" />
             </div>
             <h3 className="text-base font-semibold text-white">Server & Client Admin Proxy</h3>
@@ -255,7 +248,7 @@ export default function HomePage() {
           </div>
 
           <div className="glass-card p-8 space-y-4">
-            <div className="h-12 w-12 rounded-full bg-cyan-600 text-white font-bold text-lg flex items-center justify-center mx-auto shadow-lg shadow-cyan-600/30">
+            <div className="h-12 w-12 rounded-full bg-violet-600 text-white font-bold text-lg flex items-center justify-center mx-auto shadow-lg shadow-violet-600/30">
               2
             </div>
             <h3 className="text-base font-semibold text-white">Invite Workers via Email</h3>
@@ -265,7 +258,7 @@ export default function HomePage() {
           </div>
 
           <div className="glass-card p-8 space-y-4">
-            <div className="h-12 w-12 rounded-full bg-emerald-600 text-white font-bold text-lg flex items-center justify-center mx-auto shadow-lg shadow-emerald-600/30">
+            <div className="h-12 w-12 rounded-full bg-violet-600 text-white font-bold text-lg flex items-center justify-center mx-auto shadow-lg shadow-violet-600/30">
               3
             </div>
             <h3 className="text-base font-semibold text-white">Assign & Monitor Progress</h3>
@@ -278,7 +271,7 @@ export default function HomePage() {
 
       {/* CTA Footer Banner */}
       <section className="py-16 px-6 max-w-7xl mx-auto">
-        <div className="glass-card p-10 md:p-14 text-center relative overflow-hidden bg-linear-to-r from-violet-900/40 via-indigo-900/40 to-slate-900/80 border border-violet-500/30">
+        <div className="glass-card p-10 md:p-14 text-center relative overflow-hidden bg-slate-900/60 border border-white/10">
           <h2 className="text-3xl font-extrabold text-white">Ready to Boost Team Productivity?</h2>
           <p className="text-xs md:text-sm text-slate-300 mt-3 max-w-xl mx-auto">
             Join workspace managers who rely on TaskPiloter to organize tasks, invite workers, and deliver work on time.

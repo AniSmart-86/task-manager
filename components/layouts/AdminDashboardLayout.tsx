@@ -46,7 +46,7 @@ export default function AdminDashboardLayout({ children, activeMenu }: AdminDash
       <div className="min-h-screen flex items-center justify-center bg-[#030712] text-slate-100">
         <div className="flex flex-col items-center gap-3 text-violet-400">
           <LuLoader className="animate-spin h-8 w-8 text-violet-500" />
-          <span className="text-xs font-medium tracking-wide">Validating session permissions...</span>
+          <span className="text-xs font-medium tracking-wide">Validating permissions...</span>
         </div>
       </div>
     );

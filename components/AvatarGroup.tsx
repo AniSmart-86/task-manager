@@ -8,16 +8,28 @@ interface AvatarGroupProps {
 }
 
 export default function AvatarGroup({ avatars = [], maxVisible = 4 }: AvatarGroupProps) {
-  if (!avatars || avatars.length === 0) {
-    return (
-      <div className="flex items-center text-xs text-slate-400">
-        <span>Unassigned</span>
-      </div>
-    );
-  }
 
-  const visibleAvatars = avatars.slice(0, maxVisible);
-  const extraCount = avatars.length - maxVisible;
+
+if(!avatars || avatars.length === 0){
+  return(
+    <div>
+
+      <span>Unassigned </span>
+    </div>
+  )
+};
+
+const visibleAvatars = avatars.slice(0, maxVisible);
+const extraCount = avatars.length - maxVisible;
+
+
+
+
+
+
+
+
+
 
   return (
     <div className="flex items-center -space-x-2 overflow-hidden">
