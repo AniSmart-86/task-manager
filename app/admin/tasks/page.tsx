@@ -79,10 +79,11 @@ export default function AdminTasksPage() {
             <p className="text-xs text-slate-400 mt-0.5">Filter, inspect, edit, or export task reports</p>
           </div>
 
-          <div className="flex items-center gap-3">
+
+          <div className="flex items-center gap-2">
             <button type="button" onClick={handleDownloadReport} className="btn-secondary text-xs">
               <LuFileSpreadsheet className="h-4 w-4 text-emerald-400" />
-              <span>Export Excel</span>
+              <span className="">Export Excel</span>
             </button>
 
             <button type="button" onClick={() => setOpenCreateTaskModal(true)} className="btn-primary text-xs">

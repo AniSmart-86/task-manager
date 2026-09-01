@@ -18,9 +18,9 @@ import {
 
 function StatCard({ label, value, color }: { label: string; value: number; color: string }) {
   return (
-    <div className="glass-card p-5 relative overflow-hidden">
-      <p className={`text-xs font-semibold uppercase tracking-wide ${color}`}>{label}</p>
-      <p className="text-3xl font-bold text-white mt-1">{value}</p>
+    <div className="glass-card p-3.5 sm:p-5 relative overflow-hidden">
+      <p className={`text-[10px] sm:text-xs font-semibold uppercase tracking-wide truncate ${color}`}>{label}</p>
+      <p className="text-xl sm:text-3xl font-bold text-white mt-1">{value}</p>
     </div>
   );
 }
@@ -92,7 +92,7 @@ export default function SuperAdminDashboard() {
     <div className="min-h-screen bg-[#0b0f19] text-slate-100">
       {/* Top Nav */}
       <header className="sticky top-0 z-40 bg-[#0b0f19]/80 border-b border-white/10 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="h-9 w-9 rounded-xl bg-linear-to-tr from-violet-600 to-indigo-500 flex items-center justify-center shadow-md shadow-violet-500/20">
               <LuSquareCheck className="h-5 w-5 text-white" />
@@ -116,14 +116,14 @@ export default function SuperAdminDashboard() {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-6 py-8 space-y-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8">
         {/* Page Header */}
         <div>
           <div className="flex items-center gap-2 mb-1">
             <LuShieldCheck className="h-5 w-5 text-violet-400" />
-            <h1 className="text-xl font-bold text-white">Platform Overview</h1>
+            <h1 className="text-lg sm:text-xl font-bold text-white">Platform Overview</h1>
           </div>
-          <p className="text-xs text-slate-400">Oversee all admin workspaces and platform activity</p>
+          <p className="text-[11px] sm:text-xs text-slate-400">Oversee all admin workspaces and platform activity</p>
         </div>
 
         {loading ? (
@@ -133,7 +133,7 @@ export default function SuperAdminDashboard() {
         ) : (
           <>
             {/* Platform Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4">
               <StatCard label="Total Admins" value={data?.platformStats?.totalAdmins || 0} color="text-violet-400" />
               <StatCard label="Total Workers" value={data?.platformStats?.totalWorkers || 0} color="text-cyan-400" />
               <StatCard label="Total Tasks" value={data?.platformStats?.totalTasks || 0} color="text-slate-300" />
@@ -143,12 +143,12 @@ export default function SuperAdminDashboard() {
 
             {/* Admins Table */}
             <div className="glass-card overflow-hidden">
-              <div className="p-5 border-b border-white/10 flex items-center justify-between">
+              <div className="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <LuUsers className="h-4 w-4 text-violet-400" />
-                  <h2 className="text-sm font-bold text-white">Registered Admins</h2>
+                  <h2 className="text-xs sm:text-sm font-bold text-white">Registered Admins</h2>
                 </div>
-                <span className="text-xs text-slate-400">{data?.admins?.length || 0} admins</span>
+                <span className="text-[11px] sm:text-xs text-slate-400">{data?.admins?.length || 0} admins</span>
               </div>
 
               {data?.admins?.length === 0 ? (
@@ -156,33 +156,33 @@ export default function SuperAdminDashboard() {
               ) : (
                 <div className="divide-y divide-white/5">
                   {data?.admins?.map((admin: any) => (
-                    <div key={admin._id} className="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 hover:bg-slate-900/40 transition-colors">
+                    <div key={admin._id} className="p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 hover:bg-slate-900/40 transition-colors">
                       <div className="flex items-center gap-3 min-w-0">
-                        <div className="h-10 w-10 rounded-xl bg-violet-600/20 text-violet-300 font-bold text-sm flex items-center justify-center shrink-0 border border-violet-500/30">
+                        <div className="h-9 w-9 sm:h-10 sm:w-10 rounded-xl bg-violet-600/20 text-violet-300 font-bold text-xs sm:text-sm flex items-center justify-center shrink-0 border border-violet-500/30">
                           {admin.name.charAt(0).toUpperCase()}
                         </div>
                         <div className="min-w-0">
-                          <p className="text-sm font-semibold text-white truncate">{admin.name}</p>
-                          <p className="text-xs text-slate-400 truncate">{admin.email}</p>
+                          <p className="text-xs sm:text-sm font-semibold text-white truncate">{admin.name}</p>
+                          <p className="text-[11px] sm:text-xs text-slate-400 truncate">{admin.email}</p>
                         </div>
                       </div>
 
-                      <div className="flex items-center gap-4 text-center shrink-0">
-                        <div>
-                          <p className="text-xs text-slate-400">Workers</p>
-                          <p className="text-sm font-bold text-white">{admin.workerCount}</p>
+                      <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4 text-center shrink-0">
+                        <div className="text-left sm:text-center">
+                          <p className="text-[10px] text-slate-400">Workers</p>
+                          <p className="text-xs sm:text-sm font-bold text-white">{admin.workerCount}</p>
                         </div>
-                        <div>
-                          <p className="text-xs text-slate-400">Tasks</p>
-                          <p className="text-sm font-bold text-white">{admin.taskCount}</p>
+                        <div className="text-left sm:text-center">
+                          <p className="text-[10px] text-slate-400">Tasks</p>
+                          <p className="text-xs sm:text-sm font-bold text-white">{admin.taskCount}</p>
                         </div>
-                        <div>
-                          <p className="text-xs text-slate-400">Done</p>
-                          <p className="text-sm font-bold text-emerald-400">{admin.completedTasks}</p>
+                        <div className="text-left sm:text-center">
+                          <p className="text-[10px] text-slate-400">Done</p>
+                          <p className="text-xs sm:text-sm font-bold text-emerald-400">{admin.completedTasks}</p>
                         </div>
 
                         <span
-                          className={`px-2.5 py-0.5 rounded-full text-[10px] font-semibold border ${
+                          className={`px-2 py-0.5 rounded-full text-[9px] sm:text-[10px] font-semibold border ${
                             admin.status === "suspended"
                               ? "bg-rose-500/10 text-rose-400 border-rose-500/20"
                               : "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
@@ -191,7 +191,7 @@ export default function SuperAdminDashboard() {
                           {admin.status === "suspended" ? "Suspended" : "Active"}
                         </span>
 
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-1.5">
                           <button
                             onClick={() => handleToggleAdminStatus(admin)}
                             disabled={actionLoading === admin._id}
@@ -232,12 +232,12 @@ export default function SuperAdminDashboard() {
       {/* Delete Confirmation Modal */}
       {deleteTarget && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm">
-          <div className="glass-card p-6 w-full max-w-sm space-y-4 border border-white/10 shadow-2xl">
+          <div className="glass-card p-5 sm:p-6 w-full max-w-sm space-y-4 border border-white/10 shadow-2xl">
             <div className="h-12 w-12 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center mx-auto">
               <LuTrash2 className="h-5 w-5" />
             </div>
             <div className="text-center">
-              <h3 className="text-base font-bold text-white">Delete Admin Workspace</h3>
+              <h3 className="text-sm sm:text-base font-bold text-white">Delete Admin Workspace</h3>
               <p className="text-xs text-slate-400 mt-2">
                 This will permanently delete <strong>{deleteTarget.name}</strong>, all their workers, and all their tasks.
                 This cannot be undone.

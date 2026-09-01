@@ -44,33 +44,33 @@ export default function TaskListTable({ tableData }: TaskListTableProps) {
   }
 
   return (
-    <div className="overflow-x-auto">
-      <table className="w-full text-left text-xs">
+    <div className="overflow-x-auto -mx-2 sm:mx-0">
+      <table className="w-full text-left text-xs min-w-[340px]">
         <thead>
-          <tr className="border-b border-white/5 text-slate-400 uppercase tracking-wider text-[10px] font-semibold">
-            <th className="py-3 px-4">Task Name</th>
-            <th className="py-3 px-4">Status</th>
-            <th className="py-3 px-4">Priority</th>
-            <th className="py-3 px-4 hidden md:table-cell">Created On</th>
+          <tr className="border-b border-white/5 text-slate-400 uppercase tracking-wider text-[9px] sm:text-[10px] font-semibold">
+            <th className="py-2.5 px-2 sm:px-4">Task Name</th>
+            <th className="py-2.5 px-2 sm:px-4">Status</th>
+            <th className="py-2.5 px-2 sm:px-4">Priority</th>
+            <th className="py-2.5 px-2 sm:px-4 hidden md:table-cell">Created On</th>
           </tr>
         </thead>
         <tbody className="divide-y divide-white/5">
           {tableData.map((task) => (
             <tr key={task._id} className="hover:bg-white/2 transition-colors">
-              <td className="py-3.5 px-4 font-medium text-slate-200 line-clamp-1 max-w-50 md:max-w-xs">
+              <td className="py-2.5 sm:py-3.5 px-2 sm:px-4 font-medium text-slate-200 line-clamp-1 max-w-[140px] sm:max-w-xs text-xs">
                 {task.title}
               </td>
-              <td className="py-3.5 px-4">
-                <span className={`inline-block border px-2.5 py-0.5 rounded-full font-medium text-[11px] ${getStatusBadge(task.status)}`}>
+              <td className="py-2.5 sm:py-3.5 px-2 sm:px-4">
+                <span className={`inline-block border px-2 py-0.5 rounded-full font-medium text-[10px] sm:text-[11px] whitespace-nowrap ${getStatusBadge(task.status)}`}>
                   {task.status === "In_Progress" ? "In Progress" : task.status}
                 </span>
               </td>
-              <td className="py-3.5 px-4">
-                <span className={`inline-block border px-2.5 py-0.5 rounded-full font-medium text-[11px] ${getPriorityBadge(task.priority)}`}>
+              <td className="py-2.5 sm:py-3.5 px-2 sm:px-4">
+                <span className={`inline-block border px-2 py-0.5 rounded-full font-medium text-[10px] sm:text-[11px] whitespace-nowrap ${getPriorityBadge(task.priority)}`}>
                   {task.priority}
                 </span>
               </td>
-              <td className="py-3.5 px-4 text-slate-400 hidden md:table-cell">
+              <td className="py-2.5 sm:py-3.5 px-2 sm:px-4 text-slate-400 hidden md:table-cell">
                 {task.createdAt ? moment(task.createdAt).format("Do MMM YYYY") : "N/A"}
               </td>
             </tr>

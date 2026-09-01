@@ -62,28 +62,28 @@ export default function AdminDashboardPage() {
 
   return (
     <AdminDashboardLayout activeMenu="Dashboard">
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {/* Welcome Header */}
-        <div className="glass-card p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="glass-card p-4 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
           <div>
-            <h2 className="text-xl md:text-2xl font-bold text-white">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-bold text-white">
               {greeting}, {user?.name || "Admin"} 👋
             </h2>
-            <p className="text-xs text-slate-400 mt-1">{moment().format("dddd, Do MMMM YYYY")}</p>
+            <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5 sm:mt-1">{moment().format("dddd, Do MMMM YYYY")}</p>
           </div>
 
           <button
             type="button"
             onClick={() => setOpenCreateTaskModal(true)}
-            className="btn-primary text-xs"
+            className="btn-primary text-xs py-2.5 px-4 self-start sm:self-auto"
           >
             <LuPlus className="h-4 w-4" />
-            <span>Create New Task</span>
+            <span>Create Task</span>
           </button>
         </div>
 
         {/* Metric Cards Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <InfoCard
             label="Total Tasks"
             value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.All || 0)}
@@ -103,36 +103,40 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Charts Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <div className="glass-card p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-semibold text-white">Status Breakdown</h3>
-              <span className="text-[11px] text-slate-400 font-medium">Distribution by State</span>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+          <div className="glass-card p-4 sm:p-6">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <h3 className="text-xs sm:text-sm font-semibold text-white">Status Breakdown</h3>
+              <span className="text-[10px] sm:text-[11px] text-slate-400 font-medium">Distribution by State</span>
             </div>
-            <CustomPieChart data={pieChartData} colors={CHART_COLORS} />
+            <div className="h-56 sm:h-64 flex items-center justify-center">
+              <CustomPieChart data={pieChartData} colors={CHART_COLORS} />
+            </div>
           </div>
 
-          <div className="glass-card p-6">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-sm font-semibold text-white">Priority Distribution</h3>
-              <span className="text-[11px] text-slate-400 font-medium">Distribution by Level</span>
+          <div className="glass-card p-4 sm:p-6">
+            <div className="flex items-center justify-between mb-3 sm:mb-4">
+              <h3 className="text-xs sm:text-sm font-semibold text-white">Priority Distribution</h3>
+              <span className="text-[10px] sm:text-[11px] text-slate-400 font-medium">Distribution by Level</span>
             </div>
-            <CustomBarChart data={barChartData} />
+            <div className="h-56 sm:h-64 flex items-center justify-center">
+              <CustomBarChart data={barChartData} />
+            </div>
           </div>
         </div>
 
         {/* Recent Tasks */}
-        <div className="glass-card p-6">
-          <div className="flex items-center justify-between mb-4">
+        <div className="glass-card p-4 sm:p-6">
+          <div className="flex items-center justify-between mb-3 sm:mb-4 gap-2">
             <div>
-              <h3 className="text-base font-semibold text-white">Recent Work Activity</h3>
-              <p className="text-xs text-slate-400">Latest 10 tasks created across all teams</p>
+              <h3 className="text-sm sm:text-base font-semibold text-white">Recent Work Activity</h3>
+              <p className="text-[11px] sm:text-xs text-slate-400">Latest 10 tasks created across your team</p>
             </div>
             <Link
               href="/admin/tasks"
-              className="btn-secondary text-xs flex items-center gap-1.5 py-2 px-3"
+              className="btn-secondary text-[11px] sm:text-xs flex items-center gap-1 py-1.5 px-2.5 sm:px-3 shrink-0"
             >
-              <span>Manage Tasks</span>
+              <span>Manage</span>
               <LuArrowRight className="h-3.5 w-3.5" />
             </Link>
           </div>

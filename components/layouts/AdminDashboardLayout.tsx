@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { UserContext } from "@/context/UserContext";
 import { SIDE_BAR_DATA, USER_SIDE_BAR_DATA } from "@/lib/data";
-import { LuLoader, LuLogOut, LuMenu, LuPlus, LuShieldAlert, LuSquareCheck, LuUser, LuX } from "react-icons/lu";
+import { LuLoader, LuLogOut, LuMenu, LuShieldAlert, LuSquareCheck, LuUser, LuX } from "react-icons/lu";
 import toast from "react-hot-toast";
 import CreateTaskModal from "../modals/CreateTaskModal";
 
@@ -43,10 +43,10 @@ export default function AdminDashboardLayout({ children, activeMenu }: AdminDash
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#030712] text-slate-100">
+      <div className="min-h-screen flex items-center justify-center bg-[#0b0f19] text-slate-100">
         <div className="flex flex-col items-center gap-3 text-violet-400">
           <LuLoader className="animate-spin h-8 w-8 text-violet-500" />
-          <span className="text-xs font-medium tracking-wide">Validating permissions...</span>
+          <span className="text-xs font-medium tracking-wide">Loading...</span>
         </div>
       </div>
     );
@@ -54,7 +54,7 @@ export default function AdminDashboardLayout({ children, activeMenu }: AdminDash
 
   if (isAdminRoute && user?.role !== "admin") {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#030712] text-slate-100 p-4">
+      <div className="min-h-screen flex items-center justify-center bg-[#0b0f19] text-slate-100 p-4">
         <div className="glass-card p-8 text-center max-w-md space-y-4">
           <LuShieldAlert className="h-12 w-12 text-rose-500 mx-auto" />
           <h3 className="text-lg font-bold text-white">Access Denied</h3>
@@ -73,9 +73,9 @@ export default function AdminDashboardLayout({ children, activeMenu }: AdminDash
   }
 
   return (
-    <div className="min-h-screen flex text-slate-100 bg-[#030712]">
+    <div className="min-h-screen flex text-slate-100 bg-[#0b0f19]">
       {/* Desktop Sidebar */}
-      <aside className="hidden md:flex w-64 flex-col fixed inset-y-0 left-0 z-40 border-r border-white/10 bg-slate-950/80 backdrop-blur-xl p-5 justify-between">
+      <aside className="hidden md:flex w-64 flex-col fixed inset-y-0 left-0 z-40 border-r border-white/10 bg-[#0b0f19]/90 backdrop-blur-xl p-5 justify-between">
         <div>
           {/* Logo Brand */}
           <div className="flex items-center gap-3 px-2 py-3 mb-6">
@@ -153,7 +153,7 @@ export default function AdminDashboardLayout({ children, activeMenu }: AdminDash
           onClick={() => setMobileMenuOpen(false)}
         >
           <div
-            className="w-64 h-full bg-slate-950 p-5 flex flex-col justify-between border-r border-white/10"
+            className="w-64 h-full bg-[#0b0f19] p-5 flex flex-col justify-between border-r border-white/10"
             onClick={(e) => e.stopPropagation()}
           >
             <div>
@@ -162,7 +162,7 @@ export default function AdminDashboardLayout({ children, activeMenu }: AdminDash
                   <div className="h-8 w-8 rounded-lg bg-violet-600 flex items-center justify-center">
                     <LuSquareCheck className="h-5 w-5 text-white" />
                   </div>
-                  <span className="font-bold text-white text-sm">Taskify</span>
+                  <span className="font-bold text-white text-sm">TaskPiloter</span>
                 </div>
                 <button onClick={() => setMobileMenuOpen(false)} className="p-1 text-slate-400">
                   <LuX className="h-6 w-6" />
@@ -220,7 +220,7 @@ export default function AdminDashboardLayout({ children, activeMenu }: AdminDash
       {/* Main Content Area */}
       <div className="flex-1 md:pl-64 flex flex-col min-h-screen">
         {/* Top Header */}
-        <header className="sticky top-0 z-30 flex items-center justify-between border-b border-white/10 bg-slate-950/80 backdrop-blur-xl px-6 py-4">
+        <header className="sticky top-0 z-30 flex items-center justify-between border-b border-white/10 bg-[#0b0f19]/80 backdrop-blur-xl px-4 sm:px-6 py-3.5 sm:py-4">
           <div className="flex items-center gap-3">
             <button
               onClick={() => setMobileMenuOpen(true)}
@@ -230,34 +230,13 @@ export default function AdminDashboardLayout({ children, activeMenu }: AdminDash
             </button>
 
             <div>
-              <h2 className="text-lg font-bold text-white tracking-tight">{activeMenu || "Dashboard"}</h2>
+              <h2 className="text-base sm:text-lg font-bold text-white tracking-tight">{activeMenu || "Dashboard"}</h2>
             </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            {user?.role === "admin" && (
-              <button
-                type="button"
-                onClick={() => setOpenCreateTaskModal(true)}
-                className="btn-primary text-xs"
-              >
-                <LuPlus className="h-4 w-4" />
-                <span className="hidden sm:inline">Add Task</span>
-              </button>
-            )}
-
-            <button
-              onClick={handleLogout}
-              className="hidden md:flex items-center gap-2 rounded-xl border border-white/10 bg-slate-900/80 px-3.5 py-2 text-xs font-medium text-slate-300 hover:border-rose-500/30 hover:text-rose-400 transition-colors cursor-pointer"
-            >
-              <LuLogOut className="h-4 w-4" />
-              <span>Logout</span>
-            </button>
           </div>
         </header>
 
         {/* Page View Body */}
-        <main className="flex-1 p-6 md:p-8 max-w-7xl w-full mx-auto">{children}</main>
+        <main className="flex-1 p-4 sm:p-6 md:p-8 max-w-7xl w-full mx-auto">{children}</main>
       </div>
 
       {/* Create / Edit Task Modal */}

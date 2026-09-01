@@ -48,8 +48,14 @@ export default function SignUpPage() {
       const { token, role } = response.data;
       if (token) {
         updateUser(response.data);
-        toast.success("Admin workspace created successfully!");
-        router.push("/admin/dashboard");
+        if(role === "superadmin"){
+          toast.success("Superadmin account created successfully!");
+          router.push("/superadmin/dashboard");
+        } else {
+          toast.success("Admin account created successfully!");
+          router.push("/admin/dashboard");
+        }
+       
       }
     } catch (err: any) {
       setError(err.message || "Failed to register account");
