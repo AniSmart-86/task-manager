@@ -104,21 +104,21 @@ export default function AcceptInviteForm() {
             <div>
               <label className="block mb-1.5 font-medium text-slate-300">Invited Email</label>
               <div className="relative">
-                <LuMail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-500" />
+             
                 <input type="email" disabled value={inviteData?.email || ""} className="form-input pl-10 opacity-60 cursor-not-allowed bg-slate-950/50" />
               </div>
             </div>
             <div>
               <label className="block mb-1.5 font-medium text-slate-300">Your Full Name</label>
               <div className="relative">
-                <LuUser className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+          
                 <input type="text" placeholder="e.g. Sarah Jenkins" className="form-input pl-10" value={fullname} onChange={(e) => setFullname(e.target.value)} />
               </div>
             </div>
             <div>
               <label className="block mb-1.5 font-medium text-slate-300">Set Password</label>
               <div className="relative">
-                <LuLock className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+        
                 <input type="password" placeholder="Min 6 characters" className="form-input pl-10" value={password} onChange={(e) => setPassword(e.target.value)} />
               </div>
             </div>

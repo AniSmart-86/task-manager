@@ -141,7 +141,7 @@ export default function AdminUsersPage() {
           <div>
             <label className="block mb-1.5 font-medium text-slate-300">Worker Email Address</label>
             <div className="relative">
-              <LuMail className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+            
               <input
                 type="email"
                 placeholder="worker@company.com"

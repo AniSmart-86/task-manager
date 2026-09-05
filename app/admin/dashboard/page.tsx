@@ -41,7 +41,7 @@ export default function AdminDashboardPage() {
 
   const fetchDashboardData = async () => {
     try {
-      const response = await axiosInstance.get(API_PATHS.TASKS.GET_DASHBOARD_DATA);
+      const response = await axiosInstance.get(API_PATHS.TASKS.GET_USER_DASHBOARD_DATA);
       if (response.data) {
         setDashboardData(response.data);
         prepareChartData(response.data?.charts || null);
