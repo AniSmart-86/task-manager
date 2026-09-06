@@ -1,6 +1,7 @@
 import connectDB from "@/lib/db";
 import Task from "@/lib/models/Task";
 import { requireAuth } from "@/lib/auth";
+import mongoose from "mongoose";
 
 export async function GET(request: Request) {
   try {
@@ -10,17 +11,19 @@ export async function GET(request: Request) {
       return Response.json({ message: "Not authorized, no token" }, { status: 401 });
     }
 
+        const userId = new mongoose.Types.ObjectId(sessionUser._id);
     // Build workspace filter
     let query: any = {};
     if (sessionUser.role === "admin") {
-      query = { adminId: sessionUser._id };
+      query = { adminId: userId };
     } else if (sessionUser.role === "member") {
-      query = { assignedTo: sessionUser._id };
+      query = { assignedTo: userId };
     }
     // superadmin: no filter
 
     const totalTasks = await Task.countDocuments(query);
     const pendingTasks = await Task.countDocuments({ ...query, status: "Pending" });
+    const inProgressTasks = await Task.countDocuments({ ...query, status: "In_Progress" });
     const completedTasks = await Task.countDocuments({ ...query, status: "Completed" });
     const overDueTasks = await Task.countDocuments({
       ...query,
@@ -57,7 +60,7 @@ export async function GET(request: Request) {
       .select("title status priority dueDate createdAt");
 
     return Response.json({
-      statistics: { totalTasks, pendingTasks, completedTasks, overDueTasks },
+      statistics: { totalTasks, pendingTasks, inProgressTasks, completedTasks, overDueTasks },
       charts: { taskDistribution, taskPriorityLevel },
       recentTasks,
     });

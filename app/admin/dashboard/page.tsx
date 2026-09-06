@@ -41,16 +41,19 @@ export default function AdminDashboardPage() {
 
   const fetchDashboardData = async () => {
     try {
-      const response = await axiosInstance.get(API_PATHS.TASKS.GET_USER_DASHBOARD_DATA);
+      const response = await axiosInstance.get(API_PATHS.TASKS.GET_DASHBOARD_DATA);
       if (response.data) {
         setDashboardData(response.data);
-        prepareChartData(response.data?.charts || null);
+        prepareChartData(response.data?.charts);
+
+        console.log(response.data);
       }
     } catch (error) {
       console.error("Error fetching dashboard data", error);
     }
   };
 
+  
   useEffect(() => {
     fetchDashboardData();
   }, [refreshTrigger]);
@@ -90,15 +93,15 @@ export default function AdminDashboardPage() {
           />
           <InfoCard
             label="Pending Tasks"
-            value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.Pending || 0)}
+            value={addThousandsSeparator(dashboardData?.statistics?.pendingTasks || 0)}
           />
           <InfoCard
             label="In Progress"
-            value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.In_Progress || 0)}
+            value={addThousandsSeparator(dashboardData?.statistics?.inProgressTasks || 0)}
           />
           <InfoCard
             label="Completed"
-            value={addThousandsSeparator(dashboardData?.charts?.taskDistribution?.Completed || 0)}
+            value={addThousandsSeparator(dashboardData?.statistics?.completedTasks || 0)}
           />
         </div>
 
